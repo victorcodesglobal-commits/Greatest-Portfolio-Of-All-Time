@@ -1,24 +1,18 @@
 import Link from "next/link";
 
-type ButtonProps = {
-  children: React.ReactNode;
+type Props = {
   href: string;
-  variant?: "primary" | "secondary";
+  children: React.ReactNode;
 };
 
 export default function Button({
-  children,
   href,
-  variant = "primary",
-}: ButtonProps) {
+  children,
+}: Props) {
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition-all duration-300 ${
-        variant === "primary"
-          ? "bg-blue-600 hover:bg-blue-500 hover:scale-105"
-          : "border border-white/20 hover:border-blue-500 hover:text-blue-400"
-      }`}
+      className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-8 py-4 font-semibold text-black transition duration-300 hover:scale-105 hover:bg-cyan-400"
     >
       {children}
     </Link>

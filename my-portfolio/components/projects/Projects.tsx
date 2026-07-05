@@ -1,11 +1,29 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import FadeIn from "@/components/ui/FadeIn";
 import ProjectCard from "./ProjectCard";
 import SectionTitle from "@/components/ui/SectionTitle";
-import { projects } from "@/lib/constants";
+
+import { fetchProjects } from "@/services/projects";
 
 export default function Projects() {
+  const [projects, setProjects] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadProjects() {
+      const data = await fetchProjects();
+      console.log("PROJECT DATA:", JSON.stringify(data, null, 2));
+
+      setProjects(data);
+      setLoading(false);
+    }
+
+    loadProjects();
+  }, []);
+
   return (
     <section
       id="projects"
@@ -16,26 +34,29 @@ export default function Projects() {
         subtitle="MY WORK"
       />
 
-      <div className="grid lg:grid-cols-3 gap-10">
-
-        {projects.map((project, index) => (
-
-          <FadeIn
-            key={project.title}
-            delay={index * 0.2}
-          >
-
-            <ProjectCard
-              title={project.title}
-              description={project.description}
-            />
-
-          </FadeIn>
-
-        ))}
-
-      </div>
-
+      {loading ? (
+        <p className="mt-10 text-center text-gray-400">
+          Loading projects...
+        </p>
+      ) : (
+        <div className="grid gap-10 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <FadeIn
+              key={project.id}
+              delay={index * 0.2}
+            >
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                github={project.github}
+                live={project.live}
+                image={project.image}
+                tech={project.tech}
+              />
+            </FadeIn>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

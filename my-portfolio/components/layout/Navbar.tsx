@@ -6,33 +6,40 @@ const links = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/30 border-b border-white/10">
+    <header className="fixed left-0 top-0 z-50 w-full">
+      <nav className="mx-auto mt-6 flex w-[92%] max-w-7xl items-center justify-between rounded-full border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-xl">
+        <Link
+          href="/"
+          className="text-xl font-bold tracking-wide"
+        >
+          Victor.dev
+        </Link>
 
-      <div className="max-w-7xl mx-auto h-20 flex items-center justify-between px-8">
-
-        <h1 className="text-2xl font-bold">
-          Victor<span className="text-blue-500">.</span>
-        </h1>
-
-        <nav className="hidden md:flex gap-10">
+        <div className="hidden gap-8 md:flex">
           {links.map((link) => (
-            <Link
+            <a
               key={link.name}
               href={link.href}
-              className="text-gray-300 hover:text-white transition"
+              className="text-sm text-gray-300 transition hover:text-cyan-400"
             >
               {link.name}
-            </Link>
+            </a>
           ))}
-        </nav>
+        </div>
 
-      </div>
-
+        <Link
+          href="#contact"
+          className="rounded-full bg-cyan-500 px-5 py-2 font-medium text-black transition hover:bg-cyan-400"
+        >
+          Hire Me
+        </Link>
+      </nav>
     </header>
   );
 }

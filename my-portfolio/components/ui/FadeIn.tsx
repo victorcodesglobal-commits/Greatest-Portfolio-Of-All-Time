@@ -1,35 +1,17 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-type FadeInProps = {
+type Props = {
   children: React.ReactNode;
   delay?: number;
 };
 
-export default function FadeIn({
-  children,
-  delay = 0,
-}: FadeInProps) {
+export default function FadeIn({ children, delay = 0 }: Props) {
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: 40,
+    <div
+      style={{
+        animationDelay: `${delay}s`,
       }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-      }}
-      transition={{
-        duration: 0.8,
-        delay,
-      }}
+      className="animate-[fadeIn_.8s_ease-out] opacity-0"
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
