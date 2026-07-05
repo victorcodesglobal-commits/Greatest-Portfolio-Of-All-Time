@@ -3,15 +3,6 @@ type Props = {
   delay?: number;
 };
 
-export default function FadeIn({ children, delay = 0 }: Props) {
-  return (
-    <div
-      style={{
-        animationDelay: `${delay}s`,
-      }}
-      className="animate-[fadeIn_.8s_ease-out] opacity-0"
-    >
-      {children}
-    </div>
-  );
+export default function FadeIn({ children }: Props) {
+  return <>{children}</>;
 }
