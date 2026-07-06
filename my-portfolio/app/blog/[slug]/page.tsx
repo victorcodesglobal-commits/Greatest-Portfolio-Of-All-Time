@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { fetchPosts } from "@/services/posts";
 import { notFound } from "next/navigation";
 
@@ -10,13 +11,12 @@ type Props = {
 export default async function BlogPostPage({
   params,
 }: Props) {
-
   const { slug } = await params;
 
   const posts = await fetchPosts();
 
   const post = posts.find(
-    (p) => p.slug === slug
+    (p: any) => p.slug === slug
   );
 
   if (!post) {
@@ -26,7 +26,14 @@ export default async function BlogPostPage({
   return (
     <main className="mx-auto max-w-4xl px-6 py-20">
 
-      <p className="text-cyan-400">
+      <Link
+        href="/blog"
+        className="inline-flex items-center rounded-xl border border-cyan-500/30 px-5 py-3 text-cyan-300 transition hover:bg-cyan-500/10"
+      >
+        ← Back to Blog
+      </Link>
+
+      <p className="mt-10 text-cyan-400">
         {post.category}
       </p>
 

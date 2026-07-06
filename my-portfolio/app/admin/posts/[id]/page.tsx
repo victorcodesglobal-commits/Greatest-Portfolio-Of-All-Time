@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 import EditPostForm from "@/components/admin/EditPostForm";
+import DashboardLayout from "@/components/admin/DashboardLayout";
 import { fetchPost } from "@/services/posts";
 
 type Props = {
@@ -15,12 +18,23 @@ export default async function EditPostPage({
   const post = await fetchPost(id);
 
   return (
-    <main className="min-h-screen bg-[#050816] p-10 text-white">
-      <h1 className="mb-8 text-4xl font-bold">
-        Edit Post
-      </h1>
+    <DashboardLayout>
+      <main className="min-h-screen bg-[#050816] px-10 pb-10 pt-36 text-white">
 
-      <EditPostForm post={post} />
-    </main>
+        <Link
+          href="/admin/posts"
+          className="inline-flex items-center rounded-xl border border-cyan-500/30 px-5 py-3 text-cyan-300 transition hover:bg-cyan-500/10"
+        >
+          ← Back to Posts
+        </Link>
+
+        <h1 className="mt-8 mb-10 text-4xl font-bold">
+          Edit Post
+        </h1>
+
+        <EditPostForm post={post} />
+
+      </main>
+    </DashboardLayout>
   );
 }
