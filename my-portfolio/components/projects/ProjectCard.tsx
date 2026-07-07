@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Props = {
   title: string;
   description: string;
@@ -36,18 +38,20 @@ export default function ProjectCard({
       hover:shadow-[0_20px_80px_rgba(34,211,238,0.18)]
       "
     >
-      <div className="relative overflow-hidden">
+      {/* IMAGE */}
+      <div className="relative h-64 overflow-hidden">
 
-        <img
+        <Image
           src={image}
           alt={title}
+          fill
+          quality={80}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="
-          h-64
-          w-full
-          object-cover
-          transition-transform
-          duration-700
-          group-hover:scale-110
+            object-cover
+            transition-transform
+            duration-700
+            group-hover:scale-110
           "
         />
 
@@ -82,6 +86,7 @@ export default function ProjectCard({
 
       </div>
 
+      {/* CONTENT */}
       <div className="space-y-6 p-7">
 
         <h3 className="text-3xl font-bold leading-tight">
@@ -93,7 +98,6 @@ export default function ProjectCard({
         </p>
 
         <div className="flex flex-wrap gap-3">
-
           {technologies.map((item) => (
             <span
               key={item}
@@ -114,7 +118,6 @@ export default function ProjectCard({
               {item}
             </span>
           ))}
-
         </div>
 
         <div className="flex gap-4 pt-2">

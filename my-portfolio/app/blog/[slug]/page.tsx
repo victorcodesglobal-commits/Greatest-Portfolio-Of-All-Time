@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { fetchPosts } from "@/services/posts";
 import { notFound } from "next/navigation";
@@ -41,11 +42,18 @@ export default async function BlogPostPage({
         {post.title}
       </h1>
 
-      <img
-        src={post.image}
-        alt={post.title}
-        className="mt-10 rounded-3xl"
-      />
+      <div className="relative mt-10 h-[450px] w-full overflow-hidden rounded-3xl">
+
+        <Image
+          src={post.image}
+          alt={post.title}
+          fill
+          quality={75}
+          sizes="100vw"
+          className="object-cover"
+        />
+
+      </div>
 
       <p className="mt-10 whitespace-pre-wrap text-lg leading-9">
         {post.content}

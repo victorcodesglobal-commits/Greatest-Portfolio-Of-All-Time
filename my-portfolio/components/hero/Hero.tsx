@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Glow from "@/components/ui/Glow";
 import FadeIn from "@/components/ui/FadeIn";
@@ -74,11 +75,15 @@ export default function Hero() {
 
             <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
 
-              <img
+             <Image
                 src="/images/profile.png"
-                alt="Victor"
-                className="h-[520px] w-[400px] rounded-[30px] object-cover"
-              />
+                alt="Victor Nwaokobia"
+                width={400}
+                height={520}
+                quality={75}
+                priority
+                className="rounded-[35px] object-cover"
+/>
 
             </div>
 
